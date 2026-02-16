@@ -802,6 +802,42 @@ ZutiloChrome.zoteroOverlay = {
         return true;
     },
 
+    copyZoteroPDFLink: function () {
+        var zitems = this.getSelectedItems();
+        var links = [];
+
+        if (!this.checkItemNumber(zitems, 'regularNoteAttachment1')) {
+            return false;
+        }
+
+        var libraryType
+        var path
+        for (var ii = 0; ii < zitems.length; ii++) {
+
+            libraryType = Zotero.Libraries.get(zitems[ii].libraryID).libraryType
+
+            switch (libraryType) {
+                case 'group':
+                    path = Zotero.URI.getLibraryPath(zitems[ii].libraryID)
+                    break;
+                case 'user':
+                    path = 'library'
+                    break;
+                default:
+                    // Feeds?
+                    continue
+            }
+
+            links.push('zotero://open-pdf/' + path + '/items/' + zitems[ii].key + '?page=')
+        }
+
+        var clipboardText = links.join('\r\n');
+
+        this._copyToClipboard(clipboardText)
+
+        return true;
+    },
+
     copyZoteroItemID: function() {
         var zitems = this.getSelectedItems();
         var ids = [];
@@ -821,6 +857,7 @@ ZutiloChrome.zoteroOverlay = {
 
         return true;
     },
+
     _getZoteroItemURI: function() {
         let zitems = this.getSelectedItems();
         let links = [];

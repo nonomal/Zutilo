@@ -137,6 +137,10 @@ keys.categories.copyZoteroSelectLink = 'copying'
 keys.shortcuts.copyZoteroSelectLink = function(win) {
     win.ZutiloChrome.zoteroOverlay.copyZoteroSelectLink()
 };
+keys.categories.copyZoteroPDFLink = 'copying'
+keys.shortcuts.copyZoteroPDFLink = function(win) {
+    win.ZutiloChrome.zoteroOverlay.copyZoteroPDFLink()
+};
 keys.categories.copyZoteroItemID = 'copying'
 keys.shortcuts.copyZoteroItemID = function(win) {
     win.ZutiloChrome.zoteroOverlay.copyZoteroItemID()
@@ -541,7 +545,7 @@ AddonManager.getAddonByID('mdnotes@mdnotes.github.io', function (aAddon) {
     if (aAddon === null || !aAddon.isActive) {
         return
     }
-    
+
     keys.categories.MdnotesBatchExport = 'mdnotes'
     keys.shortcuts.MdnotesBatchExport = function(win) {
         win.Zotero.Mdnotes.batchExportMenu()
